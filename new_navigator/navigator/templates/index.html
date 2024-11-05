@@ -2,27 +2,62 @@
 {% block title %}Рассписание 8А{% endblock %}
 {% block content %}
 <div class="container text-center">
-    <nav class="navbar bg-body-tertiary"></nav>
     <div class="m-5 fs-1">Понедельник (очно)</div>
-    <div class="row">
-        <div class="col">
-            <p class="fw-medium">9:20</p>
-            <h3>Математика</h3>
-            <p>Михаил Сергеевич П.</p>
-            <a class="fw-medium" href="#">ссылка на подключение</a>
-        </div>
-        <div class="col">
-            <p class="fw-medium">9:20</p>
-            <h3>Математика</h3>
-            <p>Михаил Сергеевич П.</p>
-            <a class="fw-medium" href="#">ссылка на подключение</a>
-        </div>
-        <div class="col">
-            <p class="fw-medium">9:20</p>
-            <h3>Математика</h3>
-            <p>Михаил Сергеевич П.</p>
-            <a class="fw-medium" href="#">ссылка на подключение</a>
-        </div>
-    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th width="200" scope="col">1</th>
+            <th width="200" scope="col">2</th>
+            <th width="200" scope="col">3</th>
+            <th width="200" scope="col">4</th>
+            <th width="200" scope="col">5</th>
+            <th width="200" scope="col">6</th>
+            <th width="200" scope="col">7</th>
+            <th width="200" scope="col">8</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td scope="col">9:20</td>
+            <td scope="col">10:10</td>
+            <td scope="col">11:00</td>
+            <td scope="col">11:50</td>
+            <td scope="col">12:30</td>
+            <td scope="col">13:50</td>
+            <td scope="col">14:40</td>
+            <td scope="col">15:30</td>
+        </tr>
+        <tr>
+            <th scope="col">Математика</th>
+            <th scope="col">Русский язык</th>
+            <th scope="col">Химия</th>
+            <th scope="col">Физика</th>
+            <th scope="col">История</th>
+            <th scope="col">Биология</th>
+            <th scope="col">Физическая <br>культура</th>
+            <th scope="col">Осмысленное <br>чтение</th>
+        </tr>
+        <tr>
+            <td scope="col">1</td>
+            <td scope="col">2</td>
+            <td scope="col">3</td>
+            <td scope="col">4</td>
+            <td scope="col">5</td>
+            <td scope="col">6</td>
+            <td scope="col">7</td>
+            <td scope="col">8</td>
+        </tr>
+        <tr>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+            <td scope="col">ссылка</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 {% endblock %}

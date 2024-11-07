@@ -60,5 +60,33 @@
 <!--        </tbody>-->
 <!--    </table>-->
     <div id="calendar"></div>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function(){
+            let calendarBlock = document.getElementById('calendar');
+
+            let calendar = new FullCalendar.Calendar(calendarBlock, {
+                initialView: 'timeGridDay',
+                locale: 'ru',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'timeGridWeek,timeGridDay'
+                },
+                events: 'http://127.0.0.1:8000/api/schedule/',
+                eventTimeFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                },
+                nowIndicator: true
+            });
+
+
+            calendar.render();
+
+        });
+
+    </script>
 </div>
 {% endblock %}

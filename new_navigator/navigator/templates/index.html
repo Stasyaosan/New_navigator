@@ -1,92 +1,95 @@
-{% extends 'base.html' %}
-{% block title %}Рассписание 8А{% endblock %}
-{% block content %}
-<div class="container text-center">
-    <div class="m-5 fs-1">Понедельник (очно)</div>
-<!--    <table class="table">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th width="200" scope="col">1</th>-->
-<!--            <th width="200" scope="col">2</th>-->
-<!--            <th width="200" scope="col">3</th>-->
-<!--            <th width="200" scope="col">4</th>-->
-<!--            <th width="200" scope="col">5</th>-->
-<!--            <th width="200" scope="col">6</th>-->
-<!--            <th width="200" scope="col">7</th>-->
-<!--            <th width="200" scope="col">8</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr>-->
-<!--            <td scope="col">9:20</td>-->
-<!--            <td scope="col">10:10</td>-->
-<!--            <td scope="col">11:00</td>-->
-<!--            <td scope="col">11:50</td>-->
-<!--            <td scope="col">12:30</td>-->
-<!--            <td scope="col">13:50</td>-->
-<!--            <td scope="col">14:40</td>-->
-<!--            <td scope="col">15:30</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <th scope="col">Математика</th>-->
-<!--            <th scope="col">Русский язык</th>-->
-<!--            <th scope="col">Химия</th>-->
-<!--            <th scope="col">Физика</th>-->
-<!--            <th scope="col">История</th>-->
-<!--            <th scope="col">Биология</th>-->
-<!--            <th scope="col">Физическая <br>культура</th>-->
-<!--            <th scope="col">Осмысленное <br>чтение</th>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td scope="col">1</td>-->
-<!--            <td scope="col">2</td>-->
-<!--            <td scope="col">3</td>-->
-<!--            <td scope="col">4</td>-->
-<!--            <td scope="col">5</td>-->
-<!--            <td scope="col">6</td>-->
-<!--            <td scope="col">7</td>-->
-<!--            <td scope="col">8</td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--            <td scope="col">ссылка</td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-    <div id="calendar"></div>
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function(){
-            let calendarBlock = document.getElementById('calendar');
-
-            let calendar = new FullCalendar.Calendar(calendarBlock, {
-                initialView: 'timeGridDay',
-                locale: 'ru',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'timeGridWeek,timeGridDay'
-                },
-                events: 'http://127.0.0.1:8000/api/schedule/',
-                eventTimeFormat: {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                },
-                nowIndicator: true
-            });
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
-            calendar.render();
+  <title>
+    Расписание
+  </title>
 
-        });
 
-    </script>
+
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+    }
+
+    #calendar {
+      max-width: 1100px;
+      margin: 40px auto;
+    }
+
+  </style>
+<div class="modal fade" id="lessonModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Детали урока</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Предмет: <span id="lessonSub"></span></p>
+        <p>Дата: <span id="lessonTime"></span></p>
+        <p>Время: <span id="lessonDate"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.15/index.global.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/locales-all.min.js"></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+      timeZone: 'Europe/Moscow',
+      initialView: 'timelineDay',
+      aspectRatio: 1.5,
+      locale: 'ru',
+      headerToolbar: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'timelineDay,timelineWeek,timelineMonth'
+      },
+      events: 'http://127.0.0.1:8000/api/schedule/',
+      eventTimeFormat: {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+      },
+      nowIndicator: true,
+      slotMinTime: '09:00:00',
+      slotMaxTime: '19:00:00',
+      eventClick: function(info){
+        let b = new bootstrap.Modal(document.getElementById('lessonModal'));
+        b.show();
+      }
+    });
+
+    calendar.render();
+  });
+
+</script>
+
+</head>
+<body>
+  <div id='calendar'></div>
+</body>
+
+</html>

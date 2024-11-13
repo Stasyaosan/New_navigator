@@ -13,7 +13,7 @@ class ScheduleListView(View):
         schedules = Schedule.objects.all()
         events = []
 
-        #schedule.day_of_week+"T"
+        # schedule.day_of_week+"T"
         for schedule in schedules:
             print(str(schedule.start_time)[:5])
             day = 0
@@ -28,7 +28,7 @@ class ScheduleListView(View):
             elif schedule.day_of_week == 'Friday':
                 day = 5
             event = {
-                'title': schedule.lesson.name + "(" + schedule.teacher.name + ")",
+                'title': schedule.lesson.name,
                 'daysOfWeek': f'[{day}]',
                 'startTime': str(schedule.start_time)[:5],
                 'endTime': str(schedule.end_time)[:5],

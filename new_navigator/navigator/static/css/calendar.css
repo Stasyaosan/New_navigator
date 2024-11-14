@@ -1,0 +1,8 @@
+#calendar {
+      max-width: 1100px;
+      margin: 40px auto;
+}
+
+.fc-timeline-event .fc-event-time, .fc-timeline-event .fc-event-title{
+white-space: break-spaces;
+}

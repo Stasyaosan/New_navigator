@@ -28,7 +28,7 @@ class ScheduleListView(View):
             elif schedule.day_of_week == 'Friday':
                 day = 5
             event = {
-                'title': schedule.lesson.name,
+                'title': f'{str(schedule.start_time)[:5]} - {str(schedule.end_time)[:5]} {schedule.lesson.name}',
                 'daysOfWeek': f'[{day}]',
                 'startTime': str(schedule.start_time)[:5],
                 'endTime': str(schedule.end_time)[:5],

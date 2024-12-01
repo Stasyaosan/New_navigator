@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import *
 from django.http import JsonResponse
 from django.views import View
+
+from .add_data import get_data_from_json
+
 def index(request):
     return render(request, 'index.html')
 
@@ -15,7 +18,6 @@ class ScheduleListView(View):
 
         #schedule.day_of_week+"T"
         for schedule in schedules:
-            print(str(schedule.start_time)[:5])
             day = 0
             if schedule.day_of_week == 'Monday':
                 day = 1
@@ -28,7 +30,8 @@ class ScheduleListView(View):
             elif schedule.day_of_week == 'Friday':
                 day = 5
             event = {
-                'title': schedule.lesson.name + "(" + schedule.teacher.name + ")",
+                #'title': schedule.lesson.name + "(" + schedule.teacher.name + ")",
+                'title': f'{str(schedule.start_time)[:5]} - {str(schedule.end_time)[:5]} {schedule.lesson.name}',
                 'daysOfWeek': f'[{day}]',
                 'startTime': str(schedule.start_time)[:5],
                 'endTime': str(schedule.end_time)[:5],
@@ -36,3 +39,6 @@ class ScheduleListView(View):
             }
             events.append(event)
         return JsonResponse(events, safe=False)
+
+def add_schedule(request):
+    get_data_from_json()

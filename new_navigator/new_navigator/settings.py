@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'new_navigator.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'navigator2',
+        'NAME': 'navigator10',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',

@@ -11,15 +11,12 @@ class Lesson(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название урока')
 
 class Schedule(models.Model):
-    classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    day_of_week = models.CharField(max_length=10, choices=[
-        ('Monday', 'Понедельник'),
-        ('Tuesday', 'Вторник'),
-        ('Wednesday', 'Среда'),
-        ('Thursday', 'Четверг'),
-        ('Friday', 'Пятница'),
-    ])
+    classroom = models.CharField(max_length=200)
+    teacher = models.CharField(max_length=200)
+    lesson = models.CharField(max_length=200)
+    day_of_week = models.CharField(max_length=10)
     start_time = models.TimeField()
     end_time = models.TimeField()
+    link_zoom = models.URLField()
+    cabinet = models.CharField(max_length=50)
+    format = models.CharField(max_length=1)

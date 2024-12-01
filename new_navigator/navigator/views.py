@@ -1,38 +1,14 @@
 from django.shortcuts import render
-from .models import *
+from .models import Schedule
 from django.http import JsonResponse
 from django.views import View
+from .add_data import get_data_from_json
 
 
 def index(request):
-    return render(request, 'index.html')
+    schedules = Schedule.objects.filter(day_of_week='Monday')
+    return render(request, 'index_.html', context={'schedules': schedules})
 
 
-class ScheduleListView(View):
-    def get(self, request):
-        schedules = Schedule.objects.all()
-        events = []
-
-        # schedule.day_of_week+"T"
-        for schedule in schedules:
-            print(str(schedule.start_time)[:5])
-            day = 0
-            if schedule.day_of_week == 'Monday':
-                day = 1
-            elif schedule.day_of_week == 'Tuesday':
-                day = 2
-            elif schedule.day_of_week == 'Wednesday':
-                day = 3
-            elif schedule.day_of_week == 'Thursday':
-                day = 4
-            elif schedule.day_of_week == 'Friday':
-                day = 5
-            event = {
-                'title': f'{str(schedule.start_time)[:5]} - {str(schedule.end_time)[:5]} {schedule.lesson.name}',
-                'daysOfWeek': f'[{day}]',
-                'startTime': str(schedule.start_time)[:5],
-                'endTime': str(schedule.end_time)[:5],
-                'backgroundColor': '#000'
-            }
-            events.append(event)
-        return JsonResponse(events, safe=False)
+def add_schedule(request):
+    get_data_from_json()

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Рассписание 8А{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <div class="m-5 fs-1">Понедельник (очно)</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th width="200" scope="col">1</th>
+            <th width="200" scope="col">2</th>
+            <th width="200" scope="col">3</th>
+            <th width="200" scope="col">4</th>
+            <th width="200" scope="col">5</th>
+            <th width="200" scope="col">6</th>
+            <th width="200" scope="col">7</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for schedule in schedules %}
+            <th scope="col">{{schedule.start_time}} - {{schedule.end_time}}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for schedule in schedules %}
+            <th scope="col">{{schedule.lesson}}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for schedule in schedules %}
+            <th scope="col"><a href="{{schedule.teacher.url}}">zoom</a></th>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+    {% endblock %}

@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Schedule
 from django.http import JsonResponse
 from django.views import View
-from .add_data import get_data_from_json
+from .add_data import add_data_from_json
 
 
 def index(request):
@@ -11,4 +11,6 @@ def index(request):
 
 
 def add_schedule(request):
-    get_data_from_json()
+    add_data_from_json()
+
+    return redirect('/')
